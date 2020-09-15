@@ -6,12 +6,12 @@ export const SampleForm = (props) => {
     const { addSample } = useContext(SampleContext)
     const name = useRef(null)
     const description = useRef(null)
-
     const constructNewSample = () => {
-    
+
             addSample({
                 name: name.current.value,
-                description: description.current.value
+                description: description.current.value,
+                customerId: parseInt(localStorage.getItem("kennel_customer"))
             })
             .then(() => props.history.push("/browse"))
         }

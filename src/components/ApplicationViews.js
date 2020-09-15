@@ -19,16 +19,15 @@ export const ApplicationViews = (props) => {
                             </>
                         }} />
 
-                        {/*
-                            /browse/2
-                            /browse/:animalId(\d+)
-                        */}
                         <Route path="/browse/:sampleId(\d+)" render={
                             props => <SampleDetails {...props} />
                         } />
 
-            </SampleProvider>
+                        <Route path="/upload" render={(props) => {
+                            return <SampleForm {...props} />
+                        }} />
 
+            </SampleProvider>
 
             <Route path="/logout" render={
                 (props) => {
@@ -36,12 +35,6 @@ export const ApplicationViews = (props) => {
                     props.history.push("/login")
                 }
             } />
-
-                <SampleProvider>
-                        <Route path="/employees" render={(props) => {
-                            return <SampleForm {...props} />
-                        }} />
-                </SampleProvider>
         </>
     )
 }
