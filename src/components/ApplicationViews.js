@@ -12,6 +12,13 @@ export const ApplicationViews = (props) => {
 
             <SampleProvider>
 
+            <Route exact path="/" render={(props) => {
+                            return <>
+                                <SampleSearch />
+                                <SampleList history={props.history} />
+                            </>
+                        }} />
+
                         <Route exact path="/browse" render={(props) => {
                             return <>
                                 <SampleSearch />

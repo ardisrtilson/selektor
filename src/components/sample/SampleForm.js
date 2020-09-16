@@ -1,6 +1,23 @@
 import React, { useContext, useRef, useEffect } from "react"
 import { SampleContext } from "./SampleProvider"
 import "./Samples.css"
+import firebase from 'firebase'
+
+var firebaseConfig = {
+    apiKey: "AIzaSyBvcefxE55FTuGU_atOzBriWjYMjBTWSmI",
+    authDomain: "selektor-b0fc6.firebaseapp.com",
+    databaseURL: "https://selektor-b0fc6.firebaseio.com",
+    projectId: "selektor-b0fc6",
+    storageBucket: "selektor-b0fc6.appspot.com",
+    messagingSenderId: "575613031578",
+    appId: "1:575613031578:web:9fbbe8aea6fe7b30593b23",
+    measurementId: "G-17ZEH949SN"
+  }
+
+  firebase.initializeApp(firebaseConfig)
+
+var db = firebase.firestore();
+let thingsRef = db.collection('Samples')
 
 export const SampleForm = (props) => {
     const { addSample } = useContext(SampleContext)
@@ -9,6 +26,11 @@ export const SampleForm = (props) => {
     const constructNewSample = () => {
 
             addSample({
+                name: name.current.value,
+                description: description.current.value,
+                customerId: parseInt(localStorage.getItem("kennel_customer"))
+            })
+            thingsRef.add({
                 name: name.current.value,
                 description: description.current.value,
                 customerId: parseInt(localStorage.getItem("kennel_customer"))

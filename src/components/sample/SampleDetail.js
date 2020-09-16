@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from "react"
 import { SampleContext } from "./SampleProvider"
 import "./Samples.css"
 
-
 export const SampleDetails = (props) => {
+
     const { releaseSample, getSampleById } = useContext(SampleContext)
 
     const [sample, setSample] = useState({})

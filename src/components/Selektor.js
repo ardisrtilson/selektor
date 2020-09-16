@@ -4,7 +4,18 @@ import { ApplicationViews } from "./ApplicationViews"
 import { NavBar } from "./nav/NavBar"
 import { Login } from "./auth/Login"
 import { Register } from "./auth/Register"
+import { FirestoreProvider } from "@react-firebase/firestore"
+import firebase from 'firebase'
 import "./Selektor.css"
+
+const config = {
+    apiKey: "API_KEY",
+    projectId: "PROJECT_ID",
+    databaseURL: "DATABASE_URL",
+    authDomain: "AUTH_DOMAIN",
+    storageBucket: "STORAGE_BUCKET",
+    messagingSenderId: "MESSAGING_SENDER_ID"
+  };
 
 export const Selektor = () => (
     <>
@@ -25,3 +36,11 @@ export const Selektor = () => (
         <Route path="/register" render={props => <Register {...props} />} />
     </>
 )
+
+const App = () => {
+    return (
+      <FirestoreProvider {...config} firebase={firebase}>
+        <div>This is my app</div>
+      </FirestoreProvider>
+    );
+  };
