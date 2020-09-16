@@ -2,22 +2,27 @@ import React, { useContext, useEffect, useState } from "react"
 import { SampleContext } from "./SampleProvider"
 import { Sample } from "./Sample"
 
-export const SampleList = (props) => {
 
-    const {samples, getSamples, searchTerms} = useContext(SampleContext)
+export const SampleList = (props) => {
+    console.log(localStorage)
+    const {samples, getSamples, searchTerms, getCustomers} = useContext(SampleContext)
     const [ filteredSamples, setFiltered ] = useState([])
+
 
     useEffect(() => {
         getSamples()
+        getCustomers()
     }, [])
 
     useEffect(() => {
+        let samplesToDisplay = samples
+        if (props.history.location.pathname === "/"){
+         samplesToDisplay = samples.filter(byUser => byUser.customerId === parseInt(localStorage.kennel_customer))
+        } 
         if (searchTerms !== "") {
-            const subset = samples.filter(sample => sample.name.toLowerCase().includes(searchTerms))
-            setFiltered(subset)
-        } else {
-            setFiltered(samples)
-        }
+            samplesToDisplay = samples.filter(sample => sample.name.toLowerCase().includes(searchTerms))
+        } 
+        setFiltered(samplesToDisplay)
     }, [searchTerms, samples])
 
     return (
@@ -29,5 +34,5 @@ export const SampleList = (props) => {
                     })
                 }
             </div>
-            </article>
+            </article> 
         )}

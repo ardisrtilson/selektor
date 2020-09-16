@@ -24,7 +24,6 @@ export const SampleForm = (props) => {
     const name = useRef(null)
     const description = useRef(null)
     const constructNewSample = () => {
-
             addSample({
                 name: name.current.value,
                 description: description.current.value,

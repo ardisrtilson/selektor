@@ -4,6 +4,7 @@ export const SampleContext = React.createContext()
 
 export const SampleProvider = (props) => {
     const [samples, setSamples] = useState([])
+    const [customers, setCustomers] = useState([])
     const [searchTerms, setTerms] = useState("")
 
     const getSamples = () => {
@@ -46,10 +47,18 @@ export const SampleProvider = (props) => {
             .then(getSamples)
     }
 
+    const getCustomers = () => {
+        return fetch("http://localhost:8088/customers")
+            .then(res => res.json())
+            .then(setCustomers)
+    }
+
+
     return (
         <SampleContext.Provider value={{
             samples, addSample, getSamples, getSampleById,
-            searchTerms, setTerms, releaseSample, updateSample
+            searchTerms, setTerms, releaseSample, updateSample,
+            getCustomers, customers
         }}>
             {props.children}
         </SampleContext.Provider>

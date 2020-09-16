@@ -4,11 +4,12 @@ import "./Samples.css"
 
 export const SampleDetails = (props) => {
 
-    const { releaseSample, getSampleById } = useContext(SampleContext)
-
+    const { releaseSample, getSampleById, customers, getCustomers} = useContext(SampleContext)
     const [sample, setSample] = useState({})
+    const customerName = customers.find(customer => customer.id === sample.customerId) || {}
 
     useEffect(() => {
+        getCustomers()
         const sampleId = parseInt(props.match.params.sampleId)
         getSampleById(sampleId)
             .then(setSample)
@@ -18,7 +19,7 @@ export const SampleDetails = (props) => {
         <section className="sample">
             <h3 className="sample__name">{sample.name}</h3>
             <div className="sample__description">{sample.description}</div>
-            <div className="sample__submitter">{sample.customerId}</div>
+            <div className="sample__submitter">{customerName.name}</div>
 
             <button onClick={() => releaseSample(sample.id).then(() => props.history.push("/browse"))} >Delete Sample</button>
 
