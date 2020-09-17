@@ -4,7 +4,6 @@ import { Sample } from "./Sample"
 
 
 export const SampleList = (props) => {
-    console.log(localStorage)
     const {samples, getSamples, searchTerms, getCustomers} = useContext(SampleContext)
     const [ filteredSamples, setFiltered ] = useState([])
 
@@ -17,10 +16,10 @@ export const SampleList = (props) => {
     useEffect(() => {
         let samplesToDisplay = samples
         if (props.history.location.pathname === "/"){
-         samplesToDisplay = samples.filter(byUser => byUser.customerId === parseInt(localStorage.kennel_customer))
-        } 
+        samplesToDisplay = samples.filter(byUser => byUser.customerId === parseInt(localStorage.kennel_customer))
+        }
         if (searchTerms !== "") {
-            samplesToDisplay = samples.filter(sample => sample.name.toLowerCase().includes(searchTerms))
+        samplesToDisplay = samples.filter(sample => sample.name.toLowerCase().includes(searchTerms))
         } 
         setFiltered(samplesToDisplay)
     }, [searchTerms, samples])

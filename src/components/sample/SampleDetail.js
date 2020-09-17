@@ -20,9 +20,7 @@ export const SampleDetails = (props) => {
             <h3 className="sample__name">{sample.name}</h3>
             <div className="sample__description">{sample.description}</div>
             <div className="sample__submitter">{customerName.name}</div>
-
             <button onClick={() => releaseSample(sample.id).then(() => props.history.push("/browse"))} >Delete Sample</button>
-
             <button onClick={() => {
                 props.history.push(`/browse/edit/${sample.id}`)
             }}>Edit</button>

@@ -40,7 +40,6 @@ export const ApplicationViews = (props) => {
                 (props) => {
                     localStorage.removeItem("kennel_customer")
                     props.history.push("/login")
-                    console.log(localStorage)
                 }
             } />
         </>
