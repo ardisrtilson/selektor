@@ -62,7 +62,6 @@ export const SampleForm = (props) => {
                     <input type="text" id="sampleDescription" ref={description} required autoFocus className="form-control" placeholder="Enter Description Here" />
                 </div>
             </fieldset>
-            <progress value="0" max="100" id="uploader">0%</progress>
             <input type="file" id="fileButton" 
                 onChange={evt => {
                     file = evt.target.files[0]

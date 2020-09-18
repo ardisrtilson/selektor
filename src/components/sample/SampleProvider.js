@@ -5,6 +5,7 @@ export const SampleContext = React.createContext()
 export const SampleProvider = (props) => {
     const [samples, setSamples] = useState([])
     const [customers, setCustomers] = useState([])
+    const [userFriends, setUserFriends] = useState([])
     const [searchTerms, setTerms] = useState("")
 
     const getSamples = () => {
@@ -53,12 +54,36 @@ export const SampleProvider = (props) => {
             .then(setCustomers)
     }
 
+    const addUserFriends = customer => {
+        return fetch("http://localhost:8088/userFriends", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(customer)
+        })
+            .then(getSamples)
+    }
+
+    const getUserFriends = () => {
+        return fetch("http://localhost:8088/userFriends")
+            .then(res => res.json())
+            .then(setUserFriends)
+    }
+    
+    const releaseUserFriends = (relationshipId) => {
+        return fetch(`http://localhost:8088/userFriends/${relationshipId}`, {
+            method: "DELETE"
+        })
+            .then(getSamples)
+    }
 
     return (
         <SampleContext.Provider value={{
             samples, addSample, getSamples, getSampleById,
             searchTerms, setTerms, releaseSample, updateSample,
-            getCustomers, customers
+            getCustomers, customers, addUserFriends, getUserFriends, 
+            releaseUserFriends, userFriends
         }}>
             {props.children}
         </SampleContext.Provider>

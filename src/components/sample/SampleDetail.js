@@ -24,6 +24,9 @@ export const SampleDetails = (props) => {
             <button onClick={() => {
                 props.history.push(`/browse/edit/${sample.id}`)
             }}>Edit</button>
+            <button onClick={() => {
+                props.history.push(`/browse/comment/${sample.id}`)
+            }}>Add Comment</button>
         </section>
     )
 }
