@@ -6,6 +6,8 @@ export const SampleProvider = (props) => {
     const [samples, setSamples] = useState([])
     const [customers, setCustomers] = useState([])
     const [userFriends, setUserFriends] = useState([])
+    const [filterValue, setFilter] = useState([])
+    const [ratingValue, setRating] = useState([])
     const [searchTerms, setTerms] = useState("")
 
     const getSamples = () => {
@@ -81,9 +83,9 @@ export const SampleProvider = (props) => {
     return (
         <SampleContext.Provider value={{
             samples, addSample, getSamples, getSampleById,
-            searchTerms, setTerms, releaseSample, updateSample,
+            searchTerms, setTerms, setFilter, filterValue, releaseSample, updateSample,
             getCustomers, customers, addUserFriends, getUserFriends, 
-            releaseUserFriends, userFriends
+            releaseUserFriends, userFriends, ratingValue, setRating
         }}>
             {props.children}
         </SampleContext.Provider>

@@ -1,8 +1,7 @@
-import React, { useContext, useRef, useEffect } from "react"
+import React, { useContext, useRef} from "react"
 import { SampleContext } from "./SampleProvider"
 import "./Samples.css"
 import firebase from 'firebase'
-import { createPortal } from "react-dom"
 
 var firebaseConfig = {
     apiKey: "AIzaSyBvcefxE55FTuGU_atOzBriWjYMjBTWSmI",
@@ -35,13 +34,14 @@ export const SampleForm = (props) => {
             addSample({
                 name: name.current.value,
                 description: description.current.value,
-                customerId: parseInt(localStorage.getItem("kennel_customer")),
+                customerId: parseInt(localStorage.getItem("customer")),
+                rating: "",
                 url: url
             })
             thingsRef.add({
                 name: name.current.value,
                 description: description.current.value,
-                customerId: parseInt(localStorage.getItem("kennel_customer")),
+                customerId: parseInt(localStorage.getItem("customer")),
                 url: url
             })
             .then(() => props.history.push("/browse"))

@@ -28,6 +28,13 @@ export const ApplicationViews = (props) => {
                                 <SampleList history={props.history} />
                             </>
                         }} />
+                        <Route exact path="/browse/friends" render={(props) => {
+                            return <>
+                                <SampleSearch />
+                                <SampleFilter />
+                                <SampleList history={props.history} />
+                            </>
+                        }} />
 
                         <Route path="/browse/:sampleId(\d+)" render={
                             props => <SampleDetails {...props} />
@@ -44,7 +51,7 @@ export const ApplicationViews = (props) => {
 
             <Route path="/logout" render={
                 (props) => {
-                    localStorage.removeItem("kennel_customer")
+                    localStorage.removeItem("customer")
                     props.history.push("/login")
                 }
             } />

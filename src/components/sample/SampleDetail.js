@@ -5,9 +5,9 @@ import "./Samples.css"
 export const SampleDetails = (props) => {
 
     const { releaseSample, getSampleById, customers, getCustomers} = useContext(SampleContext)
-    const [sample, setSample] = useState({})
     const customerName = customers.find(customer => customer.id === sample.customerId) || {}
-
+    const [sample, setSample] = useState({})
+    
     useEffect(() => {
         getCustomers()
         const sampleId = parseInt(props.match.params.sampleId)

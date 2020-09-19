@@ -6,7 +6,7 @@ import { SampleContext } from "../sample/SampleProvider"
 export const Sample = ({sample}) => {
     const addFriend = () => {
         addUserFriends({
-            userId: parseInt(localStorage.getItem("kennel_customer")),
+            userId: parseInt(localStorage.getItem("customer")),
             friendId: sample.id
         })
     }
@@ -15,7 +15,6 @@ export const Sample = ({sample}) => {
     }
 
     const { customers, userFriends, getUserFriends, addUserFriends, releaseUserFriends} = useContext(SampleContext)
-    console.log(userFriends)
     const customerName = customers.find(customer => customer.id === sample.customerId) || {}
     useEffect(() => {
         getUserFriends()
