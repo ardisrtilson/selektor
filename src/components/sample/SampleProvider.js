@@ -8,6 +8,7 @@ export const SampleProvider = (props) => {
     const [userFriends, setUserFriends] = useState([])
     const [filterValue, setFilter] = useState([])
     const [ratingValue, setRating] = useState([])
+    const [commentValue, setComments] = useState([])
     const [searchTerms, setTerms] = useState("")
 
     const getSamples = () => {
@@ -28,6 +29,28 @@ export const SampleProvider = (props) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(sample)
+        })
+            .then(getSamples)
+    }
+
+    const addFavorites = sample => {
+        return fetch("http://localhost:8088/userFavorites", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(sample)
+        })
+            .then(getSamples)
+    }
+
+    const addComment = comment => {
+        return fetch("http://localhost:8088/comments", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(comment)
         })
             .then(getSamples)
     }
@@ -54,6 +77,12 @@ export const SampleProvider = (props) => {
         return fetch("http://localhost:8088/customers")
             .then(res => res.json())
             .then(setCustomers)
+    }
+
+    const getComments = () => {
+        return fetch("http://localhost:8088/comments")
+            .then(res => res.json())
+            .then(setComments)
     }
 
     const addUserFriends = customer => {
@@ -85,7 +114,8 @@ export const SampleProvider = (props) => {
             samples, addSample, getSamples, getSampleById,
             searchTerms, setTerms, setFilter, filterValue, releaseSample, updateSample,
             getCustomers, customers, addUserFriends, getUserFriends, 
-            releaseUserFriends, userFriends, ratingValue, setRating
+            releaseUserFriends, userFriends, ratingValue, setRating, addFavorites, addComment,
+            getComments, commentValue, setComments,
         }}>
             {props.children}
         </SampleContext.Provider>

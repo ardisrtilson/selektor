@@ -6,7 +6,6 @@ export const SampleList = (props) => {
 
     const {samples, filterValue, getSamples, searchTerms, getCustomers, getUserFriends, userFriends} = useContext(SampleContext)
     const [ filteredSamples, setFiltered ] = useState([])
-
     const findFriends = () => {
         let currentUserId = parseInt(localStorage.customer)
 
@@ -52,7 +51,7 @@ export const SampleList = (props) => {
                 samplesToDisplay = samples.filter(sample => sample.name.toLowerCase().includes(searchTerms))
             }
 
-            if (filterValue === "1"){
+            if (filterValue === "1" && props.history.location.pathname === "/browse"){
                 const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
                 samplesToDisplay = notUser.filter(byFriend => allUserFriends.includes(byFriend.customerId))
             }
