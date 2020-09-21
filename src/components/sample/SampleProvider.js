@@ -4,6 +4,7 @@ export const SampleContext = React.createContext()
 
 export const SampleProvider = (props) => {
     const [samples, setSamples] = useState([])
+    const [favorites, setFavorites] = useState([])
     const [customers, setCustomers] = useState([])
     const [userFriends, setUserFriends] = useState([])
     const [filterValue, setFilter] = useState([])
@@ -41,7 +42,7 @@ export const SampleProvider = (props) => {
             },
             body: JSON.stringify(sample)
         })
-            .then(getSamples)
+            .then(getFavorites)
     }
 
     const addComment = comment => {
@@ -102,11 +103,25 @@ export const SampleProvider = (props) => {
             .then(setUserFriends)
     }
     
+
+    const getFavorites = () => {
+        return fetch("http://localhost:8088/userFavorites")
+            .then(res => res.json())
+            .then(setFavorites)
+    }
+
     const releaseUserFriends = (relationshipId) => {
         return fetch(`http://localhost:8088/userFriends/${relationshipId}`, {
             method: "DELETE"
         })
             .then(getSamples)
+    }
+
+    const releaseFavorite = (favoriteId) => {
+        return fetch(`http://localhost:8088/userFavorites/${favoriteId}`, {
+            method: "DELETE"
+        })
+            .then(getFavorites)
     }
 
     return (
@@ -115,7 +130,7 @@ export const SampleProvider = (props) => {
             searchTerms, setTerms, setFilter, filterValue, releaseSample, updateSample,
             getCustomers, customers, addUserFriends, getUserFriends, 
             releaseUserFriends, userFriends, ratingValue, setRating, addFavorites, addComment,
-            getComments, commentValue, setComments,
+            getComments, commentValue, setComments, favorites, setFavorites, getFavorites, releaseFavorite
         }}>
             {props.children}
         </SampleContext.Provider>

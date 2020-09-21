@@ -19,6 +19,7 @@ let file
 var db = firebase.firestore();
 let thingsRef = db.collection('Samples')
 let url
+
 export const SampleForm = (props) => {
     const { addSample } = useContext(SampleContext)
     const name = useRef(null)

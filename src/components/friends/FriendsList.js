@@ -11,8 +11,6 @@ export const FriendsList = (props) => {
         getCustomers()
     }, [])
 
-    
-
     return (
         <article className="samples">
             <div className="samples">

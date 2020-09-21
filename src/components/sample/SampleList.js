@@ -4,7 +4,7 @@ import { Sample } from "./Sample"
 
 export const SampleList = (props) => {
 
-    const {samples, filterValue, getSamples, searchTerms, getCustomers, getUserFriends, userFriends} = useContext(SampleContext)
+    const {samples, favorites, setFilter, filterValue, getSamples, searchTerms, getCustomers, getUserFriends, userFriends, getFavorites} = useContext(SampleContext)
     const [ filteredSamples, setFiltered ] = useState([])
     const findFriends = () => {
         let currentUserId = parseInt(localStorage.customer)
@@ -32,15 +32,19 @@ export const SampleList = (props) => {
         getSamples()
         getCustomers()
         getUserFriends()
+        getFavorites()
     }, [])
 
     useEffect(() => {
-
         let samplesToDisplay = samples
         let allUserFriends = findFriends()
+
             if (props.history.location.pathname === "/"){
             samplesToDisplay = samples.filter(byUser => byUser.customerId === parseInt(localStorage.customer))
             }
+
+            if (props.history.location.pathname === "/upload"){
+                }
 
             if (props.history.location.pathname === "/browse"){
                 const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
@@ -56,8 +60,18 @@ export const SampleList = (props) => {
                 samplesToDisplay = notUser.filter(byFriend => allUserFriends.includes(byFriend.customerId))
             }
 
+            if (filterValue === "2" && props.history.location.pathname === "/browse"){
+                const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
+                const userFaves = favorites.filter(faves => faves.customerId === parseInt(localStorage.customer))
+                samplesToDisplay = notUser.filter(currentSamples => {return userFaves.some(favorite => favorite.sampleId === currentSamples.id)})
+            }
+
     setFiltered(samplesToDisplay)
     }, [searchTerms, samples, filterValue])
+
+    useEffect(() => {
+        setFilter("0")
+    }, [])
 
         return (
             <article className="samples">

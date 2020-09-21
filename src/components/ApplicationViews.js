@@ -41,7 +41,9 @@ export const ApplicationViews = (props) => {
                         } />
 
                         <Route path="/upload" render={(props) => {
-                            return <SampleForm {...props} />
+                            return <>
+                            <SampleForm {...props} />
+                            </>
                         }} />
 
                         <Route path="/friends" render={(props) => {

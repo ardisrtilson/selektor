@@ -15,9 +15,7 @@ export const SampleFilter = () => {
                 }>
 <option value="0">Select a Filter</option>
 <option value="1">Uploaded By Friends</option>
-<option value="2">Most Downloaded</option>
-<option value="3">Date Added</option>
-<option value="4">Star Rating</option>
+<option value="2">Favorites</option>
 </select>
         </>
     )
