@@ -1,3 +1,4 @@
+// Organized
 import React, { useContext, useRef} from "react"
 import { SampleContext } from "./SampleProvider"
 import "./Samples.css"
@@ -13,40 +14,43 @@ var firebaseConfig = {
     appId: "1:575613031578:web:9fbbe8aea6fe7b30593b23",
     measurementId: "G-17ZEH949SN"
 }
-
 firebase.initializeApp(firebaseConfig)
-let file
-var db = firebase.firestore();
-let thingsRef = db.collection('Samples')
-let url
 
 export const SampleForm = (props) => {
+
+    let file
+    let db = firebase.firestore();
+    let thingsRef = db.collection('Samples')
+    let url
+
     const { addSample } = useContext(SampleContext)
     const name = useRef(null)
     const description = useRef(null)
+
     const constructNewSample = () => {
-        let fileRef = firebase.storage().ref("Audio/" + file.name)
+        let fileRef = firebase.storage().ref("Audio/" + file.name)    
         fileRef.put(file).then(() => {
-        
-        async function getURL(){
-        url = await fileRef.getDownloadURL()
-        }
-        getURL().then(() => {
-            addSample({
-                name: name.current.value,
-                description: description.current.value,
-                customerId: parseInt(localStorage.getItem("customer")),
-                rating: "",
-                url: url
+            async function getURL(){
+            url = await fileRef.getDownloadURL()
+            }
+                getURL().then(() => {
+                    addSample({
+                        name: name.current.value,
+                        description: description.current.value,
+                        customerId: parseInt(localStorage.getItem("customer")),
+                        rating: "",
+                        url: url
+                    })
+                    thingsRef.add({
+                        name: name.current.value,
+                        description: description.current.value,
+                        customerId: parseInt(localStorage.getItem("customer")),
+                        url: url
+                    })
+                    .then(() => props.history.push("/browse"))
+                })
             })
-            thingsRef.add({
-                name: name.current.value,
-                description: description.current.value,
-                customerId: parseInt(localStorage.getItem("customer")),
-                url: url
-            })
-            .then(() => props.history.push("/browse"))
-    })})}
+}
 
     return (
         <form className="sampleForm">

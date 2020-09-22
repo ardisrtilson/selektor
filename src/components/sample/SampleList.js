@@ -1,20 +1,29 @@
+// Organized
 import React, { useContext, useEffect, useState } from "react"
 import { SampleContext } from "./SampleProvider"
 import { Sample } from "./Sample"
 
 export const SampleList = (props) => {
 
-    const {samples, favorites, setFilter, filterValue, getSamples, searchTerms, getCustomers, getUserFriends, userFriends, getFavorites} = useContext(SampleContext)
+    const {favorites, 
+        filterValue, 
+        getCustomers,
+        getFavorites,
+        getSamples,
+        getUserFriends, 
+        samples, 
+        searchTerms,
+        setFilter,
+        userFriends 
+           } = useContext(SampleContext)
     const [ filteredSamples, setFiltered ] = useState([])
     const findFriends = () => {
         let currentUserId = parseInt(localStorage.customer)
-
         let currentRelationships = userFriends.filter(f => {
             if (currentUserId === f.userId || currentUserId === f.friendId) {
                 return f
             }
         })
-    
         let friendIds = currentRelationships.map(r => {
             if (r.userId === currentUserId) {
                 return r.friendId
@@ -22,19 +31,16 @@ export const SampleList = (props) => {
                 return r.userId
             }
         })
-
         friendIds.push(currentUserId)
-
         return friendIds
-    }
-
+}
     useEffect(() => {
         getSamples()
         getCustomers()
         getUserFriends()
         getFavorites()
+        setFilter("0")
     }, [])
-
     useEffect(() => {
         let samplesToDisplay = samples
         let allUserFriends = findFriends()
@@ -42,9 +48,6 @@ export const SampleList = (props) => {
             if (props.history.location.pathname === "/"){
             samplesToDisplay = samples.filter(byUser => byUser.customerId === parseInt(localStorage.customer))
             }
-
-            if (props.history.location.pathname === "/upload"){
-                }
 
             if (props.history.location.pathname === "/browse"){
                 const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
@@ -63,15 +66,13 @@ export const SampleList = (props) => {
             if (filterValue === "2" && props.history.location.pathname === "/browse"){
                 const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
                 const userFaves = favorites.filter(faves => faves.customerId === parseInt(localStorage.customer))
-                samplesToDisplay = notUser.filter(currentSamples => {return userFaves.some(favorite => favorite.sampleId === currentSamples.id)})
+                samplesToDisplay = notUser.filter(currentSamples => 
+                    {return userFaves.some(favorite => 
+                        favorite.sampleId === currentSamples.id)})
             }
-
+   
     setFiltered(samplesToDisplay)
     }, [searchTerms, samples, filterValue])
-
-    useEffect(() => {
-        setFilter("0")
-    }, [])
 
         return (
             <article className="samples">
@@ -83,4 +84,5 @@ export const SampleList = (props) => {
                 }
             </div>
             </article> 
-        )}
+        )
+}

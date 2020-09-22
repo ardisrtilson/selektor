@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react"
 import { SampleContext } from "../sample/SampleProvider"
 import { Sample } from "./Friend"
 
-export const FriendsList = (props) => {
+export const FriendsList = () => {
     const {customers, getCustomers, getUserFriends} = useContext(SampleContext)
     const withoutYou = customers.filter(customer => customer.id != parseInt(localStorage.getItem("customer")))
 

@@ -1,19 +1,19 @@
+// Organized
 import React, { useContext } from "react"
 import { SampleContext } from "./SampleProvider"
 
 export const SampleSearch = () => {
     const { setTerms } = useContext(SampleContext)
-
     return (
         <>
             <div>Sample Search</div>
-            <input type="text"
-                onChange={
-                    (changeEvent) => {
+                <input type="text"
+                    onChange={
+                        (changeEvent) => {
                         setTerms(changeEvent.target.value)
                     }
-                }
-                placeholder="Enter search string here..." />
+                    }
+            placeholder="Enter search string here..." />
         </>
     )
 }
