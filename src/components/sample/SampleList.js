@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { SampleContext } from "./SampleProvider"
 import { Sample } from "./Sample"
-
+import "./Samples.css"
 export const SampleList = (props) => {
 
     const {favorites, 

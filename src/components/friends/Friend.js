@@ -5,12 +5,11 @@ import { SampleContext } from "../sample/SampleProvider"
 
 export const Sample = ({sample}) => {
     const {getUserFriends, addUserFriends, releaseUserFriends, userFriends} = useContext(SampleContext)
-
     const currentUser = parseInt(localStorage.getItem("customer"))
-    let foundFriend = userFriends.find(friend => friend.friendId === sample.id)
+    let thisUserFriends = userFriends.filter(friends => friends.userId === parseInt(localStorage.getItem("customer")))
+    let foundFriend = thisUserFriends.find(friend => friend.friendId === sample.id)
     if (foundFriend === undefined) {foundFriend = false}
-    const isFriends = foundFriend.userId === currentUser
-
+    const isFriends = foundFriend.userId === currentUser || foundFriend.friendId === currentUser
     const addFriend = () => {
         addUserFriends({
             userId: parseInt(localStorage.getItem("customer")),
@@ -23,7 +22,7 @@ export const Sample = ({sample}) => {
 
     useEffect(() => {
         getUserFriends()
-    }, [])
+    }, [isFriends])
 
     if (isFriends){
             return <section className="sample">
