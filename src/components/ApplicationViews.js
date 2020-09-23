@@ -7,6 +7,7 @@ import { SampleForm } from "./sample/SampleForm"
 import { SampleDetails } from "./sample/SampleDetail"
 import { SampleSearch } from "./sample/SampleSearch"
 import { FriendsList } from "./friends/FriendsList"
+import "./sample/Samples.css"
 
 export const ApplicationViews = (props) => {
     return (
@@ -16,6 +17,7 @@ export const ApplicationViews = (props) => {
 
             <Route exact path="/" render={(props) => {
                             return <>
+                                        <div class="heading"><h1>Your Samples</h1></div>
                                 <SampleSearch />
                                 <SampleList history={props.history} />
                             </>
@@ -23,8 +25,11 @@ export const ApplicationViews = (props) => {
 
                         <Route exact path="/browse" render={(props) => {
                             return <>
+                            <div class="heading"><h1>Browse</h1></div>
+                            <div class="filters">
                                 <SampleSearch />
                                 <SampleFilter />
+                                </div>
                                 <SampleList history={props.history} />
                             </>
                         }} />

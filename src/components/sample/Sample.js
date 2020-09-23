@@ -1,6 +1,6 @@
 import { SampleContext } from "./SampleProvider"
 import { Link } from "react-router-dom"
-import React, {useContext, useEffect} from "react"
+import React, {useContext} from "react"
 import "./Samples.css"
 
 export const Sample = ({sample}) => {
@@ -32,29 +32,29 @@ export const Sample = ({sample}) => {
 
 if (isFavorite){
 return (
-<section className="sample">
-  <h3><Link to={`/browse/${sample.id}`}>{sample.name}</Link></h3>
-    <div>Description: {sample.description}</div>
-    <div className="sample__submitter">Submitted by: {customerName.name}</div>
-      <div>
-        <button onClick={start}>Try</button>
-        <button onClick={removeFavorite}>Remove Fave</button>
-        <button onClick={downloadFile}>Download</button>
-      </div >
+<section class="sampleCard">
+  <div class="link_card button4"><Link to={`/browse/${sample.id}`}>{sample.name}</Link></div>
+    <div class="description">{customerName.name}</div>
+    <div class="description">{sample.description}</div>
+    <div class="button_card">
+        <button class="button1" onClick={start}>Try</button>
+        <button class="button5" onClick={removeFavorite}>Remove</button>
+        <button class="button3" onClick={downloadFile}>Download</button>
+        </div>
 </section>
 )}
 
 else{
 return (
-  <section className="sample">
-    <h3><Link to={`/browse/${sample.id}`}>{sample.name}</Link></h3>
-      <div>Description: {sample.description}</div>
-      <div className="sample__submitter">Submitted by: {customerName.name}</div>
-        <div>
-          <button onClick={start}>Try</button>
-          <button onClick={addSampleToFavorites}>Add Fave</button>
-          <button onClick={downloadFile}>Download</button>
-        </div >
+  <section class="sampleCard">
+  <div class="link_card button4"><Link to={`/browse/${sample.id}`}>{sample.name}</Link></div>
+    <div class="description"> {customerName.name}</div>
+    <div class="description">{sample.description}</div>
+    <div class="button_card">
+        <button class="button1" onClick={start}>Try</button>
+        <button class="button2" onClick={addSampleToFavorites}>Favorite</button>
+        <button class="button3" onClick={downloadFile}>Download</button>
+        </div>
   </section>
   )}
     

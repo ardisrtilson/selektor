@@ -6,6 +6,7 @@ export const SampleSearch = () => {
     const { setTerms } = useContext(SampleContext)
     return (
         <>
+        <div class="sampleSearch">
             <div>Sample Search</div>
                 <input type="text"
                     onChange={
@@ -14,6 +15,7 @@ export const SampleSearch = () => {
                     }
                     }
             placeholder="Enter search string here..." />
+        </div>
         </>
     )
 }

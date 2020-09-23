@@ -8,7 +8,7 @@ export const SampleFilter = () => {
 
     return (
         <>
-
+        <div class="sampleSearch">
         <div>Filters</div>
 
             <select
@@ -21,7 +21,7 @@ export const SampleFilter = () => {
                 <option value="1">Uploaded By Friends</option>
                 <option value="2">Favorites</option>
             </select>
-
+            </div>
         </>
     )
 }

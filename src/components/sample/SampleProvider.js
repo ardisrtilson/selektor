@@ -82,6 +82,12 @@ export const SampleProvider = (props) => {
             .then(res => res.json())
             .then(setUserFriends)
     }
+    const releaseComment = (commentId) => {
+        return fetch(`http://localhost:8088/comments/${commentId}`, {
+            method: "DELETE"
+        })
+            .then(getComments)
+    }
     const releaseFavorite = (favoriteId) => {
         return fetch(`http://localhost:8088/userFavorites/${favoriteId}`, {
             method: "DELETE"
@@ -131,6 +137,7 @@ export const SampleProvider = (props) => {
                 releaseSample, 
                 releaseUserFriends, 
                 ratingValue,
+                releaseComment,
                 releaseFavorite,
                 samples,
                 searchTerms,

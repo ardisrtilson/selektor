@@ -2,15 +2,170 @@
     margin: 0 5rem;
 }
 
+.button1 {
+    display: block; text-align: 
+    center; background: #FFF7D6; 
+    text-decoration: none; 
+    border-radius: 4px;
+    color: black;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: black solid 1px;
+    width: calc(100% / 3);
+    height: 100%;
+  }
+  .button2 {
+    display: block; text-align: 
+    center; background: #00C9AF; 
+    text-decoration: none; 
+    padding: 16px; 
+    border-radius: 4px;
+    color: black;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: black solid 1px;
+    width: calc(100% / 3);
+    height: 100%;
+  }
+  .button3 {
+    display: block; text-align: 
+    center; background: #9ED8FF; 
+    text-decoration: none; 
+    padding: 16px; 
+    border-radius: 4px;
+    color: black;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: black solid 1px;
+    width: calc(100% / 3);
+    height: 100%;
+  }
+  .button4 {
+    display: block; text-align: 
+    center; background: #025D8C;
+    text-decoration: none; 
+    padding: 16px; 
+    border-radius: 4px;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: black solid 1px;
+    height: 100%;
+  }
+  .button5 {
+    display: block; text-align: 
+    center; background: #FFA457;
+    text-decoration: none; 
+    padding: 16px; 
+    border-radius: 4px;
+    color: white;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: black solid 1px;
+    width: calc(100% / 3);
+    height: 100%;
+  }
+
+  a:link, a:visited {
+    color:white;
+  }
+
+  a:hover {
+    font-size: 110%;
+  }
+
+  .comment_card{
+    border: black solid 1px; 
+  }
+  .sampleCard {
+      display: flex;
+      align-items: center;
+      max-height: fit-content;
+      justify-content: space-between;
+      margin-top: 10px;
+      margin-left: 2rem;
+      margin-right: 2rem;
+  }
+
+  .link_card {
+    border: black solid 1px;
+    width: calc(100% / 8);
+  }
+
+  .button_card{
+    display: block;
+    width: calc(100% / 4);
+  }
+  .description{
+    display: block; text-align: 
+    center; background: white;
+    text-decoration: none; 
+    padding: 16px; 
+    border-radius: 4px;
+    color: black;
+    padding: 12px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border: black solid 1px;
+    width: calc(100% / 4);
+    height: 100%;
+  }
+
 .samples {
     display: block;
     flex-wrap: column;
     justify-content: space-between;
   }
 
+  .sampleSearch{
+    display: flex;
+    align-content: left;
+    margin-bottom: 2rem;
+    color: white;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 12px 16px;
+  }
   .sample {
       flex-basis: 24%;
       margin: 2rem 5em;
       padding: 1em;
       border: 1px solid goldenrod;
+  }
+
+  .heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .filters{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: slategray;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    width: calc(100% / 6);
   }

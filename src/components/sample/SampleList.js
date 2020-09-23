@@ -14,8 +14,11 @@ export const SampleList = (props) => {
         samples, 
         searchTerms,
         setFilter,
-        userFriends 
+        userFriends,
+        customers
            } = useContext(SampleContext)
+    const foundUser = customers.find(customer => customer.id === parseInt(localStorage.getItem("customer"))) || {}
+    const currentUserName = foundUser.name
     const [ filteredSamples, setFiltered ] = useState([])
     const findFriends = () => {
         let currentUserId = parseInt(localStorage.customer)
@@ -44,18 +47,21 @@ export const SampleList = (props) => {
     useEffect(() => {
         let samplesToDisplay = samples
         let allUserFriends = findFriends()
+        let currentlyFiltered = samples
 
             if (props.history.location.pathname === "/"){
             samplesToDisplay = samples.filter(byUser => byUser.customerId === parseInt(localStorage.customer))
+            currentlyFiltered = samplesToDisplay
             }
 
             if (props.history.location.pathname === "/browse"){
                 const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
                 samplesToDisplay = notUser
+                currentlyFiltered = samplesToDisplay
                 }
 
             if (searchTerms !== "") {
-                samplesToDisplay = samples.filter(sample => sample.name.toLowerCase().includes(searchTerms))
+                samplesToDisplay = currentlyFiltered.filter(sample => sample.name.toLowerCase().includes(searchTerms))
             }
 
             if (filterValue === "1" && props.history.location.pathname === "/browse"){
@@ -75,6 +81,7 @@ export const SampleList = (props) => {
     }, [searchTerms, samples, filterValue])
 
         return (
+            <>
             <article className="samples">
             <div className="samples">
                 {
@@ -84,5 +91,6 @@ export const SampleList = (props) => {
                 }
             </div>
             </article> 
+            </>
         )
 }
