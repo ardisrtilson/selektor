@@ -81,7 +81,6 @@ export const SampleList = (props) => {
         return (
             <>
             <div className="samples">
-            <div class="navHeader"><div class="navHeaderLabel"><div class="description"><h3>Submitter</h3></div><div class="description"><h3>Description</h3></div></div></div>
                 <div class="sampleCard">
                         </div> 
                 {

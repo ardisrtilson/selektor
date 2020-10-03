@@ -79,8 +79,8 @@ export const SampleForm = (props) => {
                     }
                 else{window.alert("Please Enter a Name For Your Sample")}
                 }}
-                class="button4">
-                Add Sample
+                class="button6">
+                Upload
             </button>
             </div>
         </form>
