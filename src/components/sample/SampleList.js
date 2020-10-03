@@ -15,10 +15,7 @@ export const SampleList = (props) => {
         searchTerms,
         setFilter,
         userFriends,
-        customers
            } = useContext(SampleContext)
-    const foundUser = customers.find(customer => customer.id === parseInt(localStorage.getItem("customer"))) || {}
-    const currentUserName = foundUser.name
     const [ filteredSamples, setFiltered ] = useState([])
     const findFriends = () => {
         let currentUserId = parseInt(localStorage.customer)
@@ -50,27 +47,28 @@ export const SampleList = (props) => {
         let currentlyFiltered = samples
 
             if (props.history.location.pathname === "/"){
-            samplesToDisplay = samples.filter(byUser => byUser.customerId === parseInt(localStorage.customer))
+            samplesToDisplay = currentlyFiltered.filter(byUser => byUser.customerId === parseInt(localStorage.customer))
             currentlyFiltered = samplesToDisplay
             }
 
             if (props.history.location.pathname === "/browse"){
-                const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
+                const notUser = currentlyFiltered.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
                 samplesToDisplay = notUser
                 currentlyFiltered = samplesToDisplay
                 }
 
             if (searchTerms !== "") {
                 samplesToDisplay = currentlyFiltered.filter(sample => sample.name.toLowerCase().includes(searchTerms))
+                currentlyFiltered = samplesToDisplay
             }
 
             if (filterValue === "1" && props.history.location.pathname === "/browse"){
-                const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
+                const notUser = currentlyFiltered.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
                 samplesToDisplay = notUser.filter(byFriend => allUserFriends.includes(byFriend.customerId))
             }
 
             if (filterValue === "2" && props.history.location.pathname === "/browse"){
-                const notUser = samples.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
+                const notUser = currentlyFiltered.filter(byUser => byUser.customerId != parseInt(localStorage.customer))
                 const userFaves = favorites.filter(faves => faves.customerId === parseInt(localStorage.customer))
                 samplesToDisplay = notUser.filter(currentSamples => 
                     {return userFaves.some(favorite => 
@@ -82,15 +80,16 @@ export const SampleList = (props) => {
 
         return (
             <>
-            <article className="samples">
             <div className="samples">
+            <div class="navHeader"><div class="navHeaderLabel"><div class="description"><h3>Submitter</h3></div><div class="description"><h3>Description</h3></div></div></div>
+                <div class="sampleCard">
+                        </div> 
                 {
                     filteredSamples.map(sample => {
                         return <Sample key={sample.id} sample={sample} />
                     })
                 }
-            </div>
-            </article> 
+            </div> 
             </>
         )
 }

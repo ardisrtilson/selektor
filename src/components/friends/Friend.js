@@ -25,17 +25,17 @@ export const Sample = ({sample}) => {
     }, [isFriends])
 
     if (isFriends){
-            return <section className="sample">
+            return <section class="friendCard">
 
                 <h3><Link to={`/browse/${sample.id}`}>{sample.name}</Link></h3>
-                <button onClick={removeFriend}>Remove Friend</button>
+                <button class="button2" onClick={removeFriend}>Add Friend</button>
             </section>
     }
     else{
-        return <section className="sample">
+        return <section class="friendCard">
 
         <h3><Link to={`/browse/${sample.id}`}>{sample.name}</Link></h3>
-<button onClick={addFriend}>Add Friend</button>
+        <button class="button5" onClick={addFriend}>Remove Friend</button>
     </section>
     }
 }

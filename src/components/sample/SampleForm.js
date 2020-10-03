@@ -54,31 +54,35 @@ export const SampleForm = (props) => {
 
     return (
         <form className="sampleForm">
-            <h2 className="sampleForm__title">Upload Sample</h2>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="sampleName">Sample Name: </label>
+            <h1 class="heading">Upload Sample</h1>
+                <div className="form-group1">
+                    <label htmlFor="sampleName"><h3>Sample Name:</h3></label>
                     <input type="text" id="sampleName" ref={name} required autoFocus className="form-control" placeholder="Sample Name" />
                 </div>
-            </fieldset>
-            <fieldset>
-                <div className="form-group">
-                    <label htmlFor="sampleName">Description: </label>
+                <div className="form-group2">
+                    <label htmlFor="sampleName"><h3>Description:</h3> </label>
                     <input type="text" id="sampleDescription" ref={description} required autoFocus className="form-control" placeholder="Enter Description Here" />
                 </div>
-            </fieldset>
-            <input type="file" id="fileButton" 
+                <div className="upload-group">
+            <input class="button3" type="file" id="fileButton" 
                 onChange={evt => {
                     file = evt.target.files[0]
                 }}/>
-            <button type="submit"
+            <button class="button4" type="submit"
                 onClick={evt => {
+                    console.log(name.current.value)
+                    if(name.current.value != ""){
+                        if(description.current.value != ""){
                     evt.preventDefault()
-                    constructNewSample()
+                    constructNewSample()}
+                    else{window.alert("Please Enter a Description For Your Sample")}
+                    }
+                else{window.alert("Please Enter a Name For Your Sample")}
                 }}
-                className="btn btn-primary">
+                class="button4">
                 Add Sample
             </button>
+            </div>
         </form>
     )
 }

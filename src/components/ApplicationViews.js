@@ -17,9 +17,12 @@ export const ApplicationViews = (props) => {
 
             <Route exact path="/" render={(props) => {
                             return <>
-                                        <div class="heading"><h1>Your Samples</h1></div>
+                                <div className="heading"><h1>Your Samples</h1></div>
+                                <div class="filters">
                                 <SampleSearch />
+                                </div>
                                 <SampleList history={props.history} />
+
                             </>
                         }} />
 
@@ -35,8 +38,10 @@ export const ApplicationViews = (props) => {
                         }} />
                         <Route exact path="/browse/friends" render={(props) => {
                             return <>
+                                <div class="filters">
                                 <SampleSearch />
                                 <SampleFilter />
+                                </div>
                                 <SampleList history={props.history} />
                             </>
                         }} />

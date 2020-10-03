@@ -4,7 +4,6 @@ import React, {useContext} from "react"
 import "./Samples.css"
 
 export const Sample = ({sample}) => {
-
   const { customers, addFavorites, favorites, releaseFavorite, getFavorites} = useContext(SampleContext)
   const currentUser = parseInt(localStorage.getItem("customer"))
   let thisUserFavorites = favorites.filter(faves => faves.customerId === currentUser)
@@ -32,16 +31,18 @@ export const Sample = ({sample}) => {
 
 if (isFavorite){
 return (
+<>
 <section class="sampleCard">
   <div class="link_card button4"><Link to={`/browse/${sample.id}`}>{sample.name}</Link></div>
     <div class="description">{customerName.name}</div>
     <div class="description">{sample.description}</div>
     <div class="button_card">
-        <button class="button1" onClick={start}>Try</button>
-        <button class="button5" onClick={removeFavorite}>Remove</button>
-        <button class="button3" onClick={downloadFile}>Download</button>
+        <button class="button1" onClick={start}>Try This Sample</button>
+        <button class="button5" onClick={removeFavorite}>Remove Favorite</button>
+        <button class="button3" onClick={downloadFile}>Download Sample</button>
         </div>
 </section>
+</>
 )}
 
 else{
@@ -51,9 +52,9 @@ return (
     <div class="description"> {customerName.name}</div>
     <div class="description">{sample.description}</div>
     <div class="button_card">
-        <button class="button1" onClick={start}>Try</button>
-        <button class="button2" onClick={addSampleToFavorites}>Favorite</button>
-        <button class="button3" onClick={downloadFile}>Download</button>
+        <button class="button1" onClick={start}>Try This Sample</button>
+        <button class="button2" onClick={addSampleToFavorites}>Add Favorite</button>
+        <button class="button3" onClick={downloadFile}>Download Sample</button>
         </div>
   </section>
   )}

@@ -44,49 +44,75 @@ export const SampleDetails = (props) => {
 
         if (isUser === true){
         return (
-            <section className="sample">
-                <h3 className="sample__name">{sample.name}</h3>
-                <div className="sample__description">{sample.description}</div>
-                <div className="sample__submitter">{customerName.name}</div>
-                <input type="text" ref={userComment} id="sampleName" required autoFocus className="form-control" placeholder="Enter Comment" />
-                <button onClick={addCommentToApi}>Add Comment</button>
-                <button onClick={() => releaseSample(sample.id).then(() => props.history.push("/browse"))} >Delete Sample</button>
-                <div className="comment_card">{
+                <section className="sample">
+                    <h3 className="sample__name">{sample.name} by {customerName.name}<button onClick={() => releaseSample(sample.id).then(() => props.history.push("/browse"))} >Delete Sample</button></h3>
+                    <div className="sample__description"><h3>Description:</h3>{sample.description}</div>
+                    <div className="sample__submitter"> <h3>Comments:</h3>{
                         theseComments.map(comment => {
                         if (currentUserName === comment.userId){
-                        return <><div>{comment.userId}</div>
+                        return <>
+                        <fieldset>
+                        <div className= "comment__user">
+                        <div>{comment.userId}</div>
                         <div>{comment.comment}</div>
-                        <button onClick={() => releaseComment(comment.id)}>Delete Comment</button></>
+                        <button onClick={() => releaseComment(comment.id)}>Delete Comment</button>
+                        </div>
+                        </fieldset>
+                        </>
                         }
                         else {
-                            return <><div>{comment.userId}</div>
-                            <div>{comment.comment}</div></>
+                            return <>
+                            <fieldset>
+                            <div className= "comment__user">
+                            <div>{comment.userId}</div>
+                            <div>{comment.comment}</div>
+                            </div>
+                            </fieldset>
+                            </>
                             }
                         })}
                 </div>
-            </section>
-        )} 
+                    <div className="entry__field">
+                    <input type="text" ref={userComment} id="sampleName" required autoFocus className="form-control" placeholder="Enter Comment" />
+                    <button onClick={addCommentToApi}>Add Comment</button>
+                    </div>
+                </section>
+        )
+    } 
         else{
             return (
                 <section className="sample">
-                    <h3 className="sample__name">{sample.name}</h3>
+                    <h3 className="sample__name">{sample.name} by {customerName.name}</h3>
                     <div className="sample__description">{sample.description}</div>
-                    <div className="sample__submitter">{customerName.name}</div>
-                    <input type="text" ref={userComment} id="sampleName" required autoFocus className="form-control" placeholder="Enter Comment" />
-                    <button onClick={addCommentToApi}>Add Comment</button>
-                    <div className="sample__submitter">{
+                    <div className="sample__submitter"> <h3>Comments:</h3>{
                         theseComments.map(comment => {
                         if (currentUserName === comment.userId){
-                        return <><div>{comment.userId}</div>
+                        return <>
+                        <fieldset>
+                        <div className= "comment__user">
+                        <div>{comment.userId}</div>
                         <div>{comment.comment}</div>
-                        <button onClick={() => releaseComment(comment.id)}>Delete Comment</button></>
+                        <button onClick={() => releaseComment(comment.id)}>Delete Comment</button>
+                        </div>
+                        </fieldset>
+                        </>
                         }
                         else {
-                            return <><div>{comment.userId}</div>
-                            <div>{comment.comment}</div></>
+                            return <>
+                            <fieldset>
+                            <div className= "comment__user">
+                            <div>{comment.userId}</div>
+                            <div>{comment.comment}</div>
+                            </div>
+                            </fieldset>
+                            </>
                             }
                         })}
                 </div>
+                    <div className="entry__field">
+                    <input type="text" ref={userComment} id="sampleName" required autoFocus className="form-control" placeholder="Enter Comment" />
+                    <button onClick={addCommentToApi}>Add Comment</button>
+                    </div>
                 </section>
         )}
     }

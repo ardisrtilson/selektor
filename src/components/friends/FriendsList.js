@@ -12,14 +12,15 @@ export const FriendsList = () => {
     }, [])
 
     return (
-        <article className="samples">
-            <div className="samples">
+        <>
+        <div class="heading"><h1>Add/Remove Friends</h1></div>
+        <article className="friends">
                     {
                         withoutYou.map(sample => {
                             return <Sample key={sample.id} sample={sample} />
                         })
                     }
-                </div>
                 </article> 
+                </>
     )
 }

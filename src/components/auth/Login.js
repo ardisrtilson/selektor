@@ -33,6 +33,7 @@ export const Login = props => {
 
     return (
         <main className="container--login">
+            <img src="Logo.png" alt="Logo"></img>
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
